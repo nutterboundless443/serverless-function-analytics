@@ -1,4 +1,4 @@
-service: serverless-function-analytics
+service: serverless-function-analytics # 服务：Serverless函数分析
 
 provider:
   name: aws
