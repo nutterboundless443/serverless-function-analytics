@@ -1,0 +1,29 @@
+service: serverless-function-analytics
+
+provider:
+  name: aws
+  runtime: python3.8
+
+functions:
+  performance:
+    handler: src/main.get_performance_data
+    events:
+      - http:
+          path: api/performance
+          method: get
+
+resources:
+  Resources:
+    MyDynamoDBTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        TableName: PerformanceData
+        AttributeDefinitions:
+          - AttributeName: function_name
+            AttributeType: S
+        KeySchema:
+          - AttributeName: function_name
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
