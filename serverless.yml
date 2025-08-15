@@ -10,20 +10,20 @@ functions:
     events:
       - http:
           path: api/performance
-          method: get
+          method: get  # HTTP GET method for performance data
 
 resources:
   Resources:
     MyDynamoDBTable:
       Type: 'AWS::DynamoDB::Table'
       Properties:
-        TableName: PerformanceData
+        TableName: PerformanceData  # DynamoDB table for storing performance data
         AttributeDefinitions:
           - AttributeName: function_name
-            AttributeType: S
+            AttributeType: S  # Define function_name as a string attribute
         KeySchema:
           - AttributeName: function_name
-            KeyType: HASH
+            KeyType: HASH  # Hash key for the DynamoDB table
         ProvisionedThroughput:
-          ReadCapacityUnits: 5
-          WriteCapacityUnits: 5
+          ReadCapacityUnits: 5  # Read capacity units
+          WriteCapacityUnits: 5  # Write capacity units
